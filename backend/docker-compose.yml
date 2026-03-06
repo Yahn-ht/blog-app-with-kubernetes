@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  blog-db:
+    image: postgres:15-alpine
+    container_name: blog-db
+    environment:
+      POSTGRES_DB: blogdb
+      POSTGRES_USER: bloguser
+      POSTGRES_PASSWORD: blogpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - blog-data:/var/lib/postgresql/data
+    networks:
+      - blog-network
+
+volumes:
+  blog-data:
+
+networks:
+  blog-network:
+    driver: bridge

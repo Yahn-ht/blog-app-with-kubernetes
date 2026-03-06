@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-create-article-likes
+      author: Yahn
+      changes:
+        - createSequence:
+            sequenceName: article_like_seq
+
+        - createTable:
+            tableName: article_like
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  defaultValueSequenceNext: article_like_seq
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: emoji
+                  type: VARCHAR(50)
+              - column:
+                  name: user_id
+                  type: BIGINT
+              - column:
+                  name: article_id
+                  type: BIGINT
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+
+        - addUniqueConstraint:
+            tableName: article_like
+            columnNames: user_id, article_id
+            constraintName: uk_user_article_like
+
+        - addForeignKeyConstraint:
+            baseTableName: article_like
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_like_user
+
+        - addForeignKeyConstraint:
+            baseTableName: article_like
+            baseColumnNames: article_id
+            referencedTableName: article
+            referencedColumnNames: id
+            constraintName: fk_like_article

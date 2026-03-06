@@ -1,0 +1,366 @@
+databaseChangeLog:
+    - changeSet:
+        id: 1771542319594-1
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - createTable:
+            columns:
+            - column:
+                name: deleted
+                type: BOOLEAN
+            - column:
+                name: created_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: users_pkey
+                name: id
+                type: BIGINT
+            - column:
+                name: updated_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                constraints:
+                  nullable: false
+                name: email
+                type: VARCHAR(255)
+            - column:
+                constraints:
+                  nullable: false
+                name: first_name
+                type: VARCHAR(255)
+            - column:
+                constraints:
+                  nullable: false
+                name: last_name
+                type: VARCHAR(255)
+            - column:
+                constraints:
+                  nullable: false
+                name: password
+                type: VARCHAR(255)
+            - column:
+                name: role
+                type: VARCHAR(255)
+            tableName: users
+    - changeSet:
+        id: 1771542319594-2
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - createTable:
+            columns:
+            - column:
+                name: created_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: article_category_pkey
+                name: id
+                type: BIGINT
+            - column:
+                name: updated_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                constraints:
+                  nullable: false
+                name: name
+                type: VARCHAR(255)
+            tableName: article_category
+    - changeSet:
+        id: 1771542319594-3
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - createTable:
+            columns:
+            - column:
+                name: article_id
+                type: BIGINT
+            - column:
+                name: created_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: article_like_pkey
+                name: id
+                type: BIGINT
+            - column:
+                name: updated_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                name: user_id
+                type: BIGINT
+            - column:
+                name: emoji
+                type: VARCHAR(255)
+            tableName: article_like
+    - changeSet:
+        id: 1771542319594-4
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - addUniqueConstraint:
+            columnNames: email
+            constraintName: users_email_key
+            tableName: users
+    - changeSet:
+        id: 1771542319594-5
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - addUniqueConstraint:
+            columnNames: name
+            constraintName: article_category_name_key
+            tableName: article_category
+    - changeSet:
+        id: 1771542319594-6
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - addUniqueConstraint:
+            columnNames: user_id, article_id
+            constraintName: article_like_user_id_article_id_key
+            tableName: article_like
+    - changeSet:
+        id: 1771542319594-7
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - createSequence:
+            cacheSize: 1
+            cycle: false
+            dataType: bigint
+            incrementBy: 50
+            maxValue: 9223372036854775807
+            minValue: 1
+            sequenceName: article_category_seq
+            startValue: 1
+    - changeSet:
+        id: 1771542319594-8
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - createSequence:
+            cacheSize: 1
+            cycle: false
+            dataType: bigint
+            incrementBy: 50
+            maxValue: 9223372036854775807
+            minValue: 1
+            sequenceName: article_like_seq
+            startValue: 1
+    - changeSet:
+        id: 1771542319594-9
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - createSequence:
+            cacheSize: 1
+            cycle: false
+            dataType: bigint
+            incrementBy: 50
+            maxValue: 9223372036854775807
+            minValue: 1
+            sequenceName: article_seq
+            startValue: 1
+    - changeSet:
+        id: 1771542319594-10
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - createSequence:
+            cacheSize: 1
+            cycle: false
+            dataType: bigint
+            incrementBy: 50
+            maxValue: 9223372036854775807
+            minValue: 1
+            sequenceName: comment_seq
+            startValue: 1
+    - changeSet:
+        id: 1771542319594-11
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - createSequence:
+            cacheSize: 1
+            cycle: false
+            dataType: bigint
+            incrementBy: 50
+            maxValue: 9223372036854775807
+            minValue: 1
+            sequenceName: users_seq
+            startValue: 1
+    - changeSet:
+        id: 1771542319594-12
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - createTable:
+            columns:
+            - column:
+                constraints:
+                  nullable: false
+                name: like_count
+                type: INTEGER
+            - column:
+                name: author_id
+                type: BIGINT
+            - column:
+                name: category_id
+                type: BIGINT
+            - column:
+                name: created_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: article_pkey
+                name: id
+                type: BIGINT
+            - column:
+                constraints:
+                  nullable: false
+                name: published_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                name: updated_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                constraints:
+                  nullable: false
+                name: content
+                type: TEXT
+            - column:
+                constraints:
+                  nullable: false
+                name: description
+                type: TEXT
+            - column:
+                constraints:
+                  nullable: false
+                name: slug
+                type: VARCHAR(255)
+            - column:
+                constraints:
+                  nullable: false
+                name: title
+                type: VARCHAR(255)
+            tableName: article
+    - changeSet:
+        id: 1771542319594-13
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - createTable:
+            columns:
+            - column:
+                name: article_id
+                type: BIGINT
+            - column:
+                name: created_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: comment_pkey
+                name: id
+                type: BIGINT
+            - column:
+                name: updated_at
+                type: TIMESTAMP WITHOUT TIME ZONE
+            - column:
+                name: user_id
+                type: BIGINT
+            - column:
+                name: content
+                type: TEXT
+            tableName: comment
+    - changeSet:
+        id: 1771542319594-14
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: article_like
+            constraintName: fk4q8taf63le59xlia82u2morw1
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: users
+            validate: true
+    - changeSet:
+        id: 1771542319594-15
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: article_id
+            baseTableName: comment
+            constraintName: fk5yx0uphgjc6ik6hb82kkw501y
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: article
+            validate: true
+    - changeSet:
+        id: 1771542319594-16
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: article_id
+            baseTableName: article_like
+            constraintName: fkabthli6g1qjriusniw93pbesw
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: article
+            validate: true
+    - changeSet:
+        id: 1771542319594-17
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: author_id
+            baseTableName: article
+            constraintName: fkmjgtny2i22jf4dqncmd436s0u
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: users
+            validate: true
+    - changeSet:
+        id: 1771542319594-18
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: category_id
+            baseTableName: article
+            constraintName: fko15210u2t92il4ihrnhaiqv7a
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: article_category
+            validate: true
+    - changeSet:
+        id: 1771542319594-19
+        author: YahnNabilSEMENOU (generated)
+        changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: comment
+            constraintName: fkqm52p1v3o13hy268he0wcngr5
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: users
+            validate: true
+
